@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import './SearchForm.scss';
 
-const SearchForm = () => {
-
-  const [login, setLogin] = useState('');
-
-  function handleInputChange(event) {
-    setLogin(event.target.value);
-  }
+const SearchForm = ({ handleInputChange, onSubmit }) => {
 
   return (
-    <form className="search">
+    <form className="search" onSubmit={onSubmit}>
       <div className="search__box">
         <input className="search__input" 
           placeholder="User login" 
