@@ -1,7 +1,18 @@
+import React, { useState, useEffect } from "react";
+import api from "../../utils/API";
 import './SearchForm.scss';
-import React, { useState } from "react";
 
 const SearchForm = () => {
+
+  const [login, setLogin] = useState('');
+
+//   useEffect(() => {
+//     setLogin(searchUsers);
+//   }, [searchUsers]);
+
+  function handleInputChange(event) {
+    setLogin(event.target.value);
+  }
 
   return (
     <form className="search">
@@ -10,6 +21,7 @@ const SearchForm = () => {
           placeholder="User login" 
           type="text" 
           required 
+          onChange={ handleInputChange }
         />
         <button 
           type="submit" 
