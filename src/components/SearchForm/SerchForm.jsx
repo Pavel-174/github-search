@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import './SearchForm.scss';
 
-const SearchForm = ({ handleInputChange, onSubmit }) => {
+const SearchForm = ({ handleInputChange, onSubmit, showMaxRepos, showRepos }) => {
+
+  const [selector, setSelector] = useState(false);
+
+  function handleReposSelector() {
+    const newSelector = !selector;
+    setSelector(newSelector);
+    selector === true ? showRepos() : showMaxRepos();
+  }
 
   return (
     <form className="search" onSubmit={onSubmit}>
@@ -16,6 +24,10 @@ const SearchForm = ({ handleInputChange, onSubmit }) => {
           type="submit" 
           className="search__button" 
         >Search</button>
+      </div>
+      <div className="search__check">
+        <input type="checkbox" checked={selector} onChange={handleReposSelector}></input>
+        <span>Max repositories</span>
       </div>
     </form>
   );

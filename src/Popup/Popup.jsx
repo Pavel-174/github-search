@@ -10,7 +10,11 @@ const Popup = ({ onClose, isOpen, user }) => {
         className="popup__box" 
         onClick={ (evt) => {evt.stopPropagation();} }
       >
-        <img className='popup_image' src={ user === null ? user : user.avatar_url }></img>
+        <img
+          className='popup_image' 
+          src={ user === null ? user : user.avatar_url } 
+          alt="avatar"
+        />
         <h2 className="popup__header">
             { user === null ? user : user.login }
         </h2>

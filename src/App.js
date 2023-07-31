@@ -12,9 +12,10 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [results, setResults] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
-  const [resultsPerPage, setResultsPerPage] = useState(30);
+  const [resultsPerPage] = useState(30);
   const [popupOpen, setPopupOpen] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null)
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [maxRepos, setMaxRepos] = useState(null)
 
   function handleInputChange(event) {
     setLogin(event.target.value);
@@ -22,13 +23,13 @@ const App = () => {
 
   const onSearchSubmit = async (event) => {
     event.preventDefault();
-    const url = `https://api.github.com/search/users?q=${login}&page=1&per_page=30`
+    const url = `https://api.github.com/search/users?q=${login}&page=1&per_page=30&sort=${maxRepos}`
     const results = await fetchResults(url);
     setResults(results);
   };
 
   const onPageChange = async (page) => {
-    const url = `https://api.github.com/search/users?q=${login}&page=${page}&per_page=30`
+    const url = `https://api.github.com/search/users?q=${login}&page=${page}&per_page=30&sort=${maxRepos}`
     const results = await fetchResults(url);
     setPageNumber(page);
     setResults(results);
@@ -57,6 +58,14 @@ const App = () => {
     setSelectedUser(user);
   }
 
+  function showMaxRepos() {
+    setMaxRepos('repositories');
+  }
+
+  function showRepos() {
+    setMaxRepos(null);
+  }
+
   return (
     <div className="app">
       <Header />
@@ -64,6 +73,8 @@ const App = () => {
         <SearchForm
           handleInputChange = { handleInputChange }
           onSubmit = { onSearchSubmit }
+          showMaxRepos = {showMaxRepos}
+          showRepos = { showRepos }
         />
         <div className='results'>
           {results.map((user) => (
