@@ -4,6 +4,7 @@ import User from './components/User/User';
 import Footer from './components/Footer/Footer';
 import Pagination from './components/Pagination/Pagination';
 import Header from './components/Header/Header';
+import Popup from './Popup/Popup';
 import './App.scss';
 
 const App = () => {
@@ -12,6 +13,8 @@ const App = () => {
   const [results, setResults] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [resultsPerPage, setResultsPerPage] = useState(30);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null)
 
   function handleInputChange(event) {
     setLogin(event.target.value);
@@ -42,6 +45,18 @@ const App = () => {
     }
   }
 
+  function popupClose() {
+    setPopupOpen(false);
+  }
+
+  function openPopup() {
+    setPopupOpen(true);
+  }
+
+  function handleCardClick(user) {
+    setSelectedUser(user);
+  }
+
   return (
     <div className="app">
       <Header />
@@ -53,21 +68,29 @@ const App = () => {
         <div className='results'>
           {results.map((user) => (
             <User
+              user = { user }
               key = { user.login }
               url = { user.html_url }
               avatar = { user.avatar_url }
               login = { user.login }
+              openPopup = { openPopup }
+              onCardClick={handleCardClick}
             />
           ))}
         </div>
         <Pagination
-          resultsPerPage={resultsPerPage}
-          totalResults={totalResults}
-          pageNumber={pageNumber}
-          onPageChange={onPageChange}
+          resultsPerPage = { resultsPerPage }
+          totalResults = { totalResults }
+          pageNumber = { pageNumber }
+          onPageChange = { onPageChange }
         />
       </main>
       <Footer />
+      <Popup  
+          isOpen = { popupOpen } 
+          onClose = { popupClose }
+          user = { selectedUser }
+      />
     </div>
   );
 };
