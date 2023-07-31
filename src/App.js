@@ -3,6 +3,7 @@ import SearchForm from './components/SearchForm/SerchForm';
 import User from './components/User/User';
 import Footer from './components/Footer/Footer';
 import Pagination from './components/Pagination/Pagination';
+import Header from './components/Header/Header';
 import './App.scss';
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <Header />
       <main className="main">
         <SearchForm
           handleInputChange = { handleInputChange }

@@ -6,23 +6,22 @@ import "./Pagination.scss";
 
 
 const Pagination = ({ totalResults, onPageChange, pageNumber }) => (
-  <>
-  <p>Users: {totalResults}</p>
+
   <div
     className={
       "pagination_box" + (totalResults === 0 ? " hide" : " show")
     }
-  >
+  > 
+    <p className="pagination_count">Users: {totalResults}</p>
     <PagePagination
-      onChange={onPageChange}
-      current={pageNumber}
-      total={totalResults}
-      pageSize={30}
+      onChange={ onPageChange }
+      current={ pageNumber }
+      total={ totalResults }
+      pageSize={ 30 }
       showLessItems
-      locale={localeInfo}
+      locale={ localeInfo }
     />
-  </div>
-  </>  
+  </div> 
 );
 
 export default Pagination;
