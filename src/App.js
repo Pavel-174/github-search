@@ -32,7 +32,7 @@ const App = () => {
           {results.map((user) => (
             <User
               key = { user.login }
-              url = { user.url }
+              url = { user.html_url }
               avatar = { user.avatar_url }
               login = { user.login }
             />
