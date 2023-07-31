@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-import api from "../../utils/API";
 import './SearchForm.scss';
 
 const SearchForm = () => {
 
   const [login, setLogin] = useState('');
-
-//   useEffect(() => {
-//     setLogin(searchUsers);
-//   }, [searchUsers]);
 
   function handleInputChange(event) {
     setLogin(event.target.value);
