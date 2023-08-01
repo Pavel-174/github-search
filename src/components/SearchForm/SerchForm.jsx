@@ -9,7 +9,7 @@ const SearchForm = ({ handleInputChange, onSubmit, showMaxRepos, showRepos }) =>
     const newSelector = !selector;
     setSelector(newSelector);
     selector === true ? showRepos() : showMaxRepos();
-  }
+  } //показывает наибольшее колличество репозиторив в поиске или наиболее точный результат поиска
 
   return (
     <form className="search" onSubmit={onSubmit}>
